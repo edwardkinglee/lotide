@@ -14,34 +14,34 @@ const eqObjects = function(object1, object2) {
   if (objOneLength === objTwoLength) {
     for (let element of object1keys) {
       if (object2keys.includes(element) === false) {
-        return console.log(`Assertion Failed \u274C: Objects don't have the same keys.`);
+        return false;
       }
       
       if (Array.isArray(object1[element])) {
         if (!eqArrays(object1[element], object2[element])) {
-          return console.log(`Assertion Failed \u274C False: Objects don't match.`);
+          return false;
         }
       } else if (!object1[element] === object2[element]) {
-        return console.log(`Assertion Failed \u274C False: Objects don't match.`);
+        return false;
       }
     }
-    return console.log(`Assertion Passed \u2705 True: Object1 === Object2`);
+    return true;
   }
-  return console.log(`Assertion Failed \u274C False: Objects don't match.`);
+  return false;
 };
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
-eqObjects(ab, ba); // => true
+console.log(eqObjects(ab, ba)); // => true
 
 
 const abc = { a: "1", b: "2", c: "3" };
-eqObjects(ab, abc); // => false
+console.log(eqObjects(ab, abc)); // => false
 
 
 const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
-eqObjects(cd, dc); // => true
+console.log(eqObjects(cd, dc)); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
-eqObjects(cd, cd2); // => false
+console.log(eqObjects(cd, cd2)); // => false
