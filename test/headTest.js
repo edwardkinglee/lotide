@@ -1,8 +1,5 @@
 const assertEqual = require('../assertEqual');
-
-const head = (array) => {
-  return array.length !== 0 ? array[0] : undefined;
-};
+const head = require('../head');
 
 //Test Code
 assertEqual(head([5,6,7]), 5);
