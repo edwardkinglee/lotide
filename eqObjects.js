@@ -19,20 +19,15 @@ const eqObjects = function(object1, object2) {
       if (!object2keys.includes(element)) {
         return false;
       }
-      //console.log('isObject1 a object', isObject(object1[element]));
-      //console.log('isObject2 a object', isObject(object2[element]));
-      //console.log('object1', object1[element], 'object2', object2[element]);
+     
       if (Array.isArray(object1[element])) {
         if (!eqArrays(object1[element], object2[element])) {
           return false;
         }
         //added check to make sure !isObject is false so it only compares values
       } else if (object1[element] !== object2[element] && !isObject(object1[element]) && !isObject(object2[element])) {
-        //console.log('object 1 !== object 2');
         return false;
-        //added to check if object1[element] or isObject2[element]
       } else if (isObject(object1[element]) || isObject(object2[element])) {
-        //console.log('inside else if isObject');
         eqObjects(object1[element], object2[element]);
       }
 
