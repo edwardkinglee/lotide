@@ -1,7 +1,5 @@
-const eqArrays = (a, b) =>
-  a.length === b.length &&
-  a.every((v, i) => v === b[i]);
-//check if object
+const eqArrays = require('./eqArrays');
+
 const isObject = (object) => {
   return object !== null && typeof object === "object";
 };
@@ -45,47 +43,4 @@ const eqObjects = function(object1, object2) {
   return false;
 };
 
-const assertObjectsEqual = function(actual, expected) {
-  // Implement me!
-  const inspect = require('util').inspect;
-  if (eqObjects(actual, expected)) {
-    return console.log(`\u2705\u2705\u2705 Assertion Passed: ${inspect(actual)} === ${inspect(expected)}`);
-  }
-  return console.log(`\u274C\u274C\u274C Assertion Failed: ${inspect(actual)} !== ${inspect(expected)}`);
-};
-
-const a = { a: { z: 1 }, b: 2 };
-const b = { a: { z: 1 }, b: 2 };
-assertObjectsEqual(eqObjects(a, b), true);//=> true
-
-const c = { a: { y: 0, z: 1 }, b: 2 };
-const d = { a: { z: 1 }, b: 2 };
-assertObjectsEqual(eqObjects(c, d), false);// => false
-
-const e = { a: { y: 0, z: 1 }, b: 2 };
-const f = { a: 1, b: 2 };
-assertObjectsEqual(eqObjects(e, f), false);// => false
-
-const g = { a: { y: 0, z: 1 }, b: 2 };
-const h = { a: { y: 0, z: 1, a: 0 }, b: 2 };
-assertObjectsEqual(eqObjects(g, h), false);// => false
-
-const i = { a: { y: 0, z: { a: 1 } }, b: 2 };
-const j = { a: { y: 0, z: { a: 1 } }, b: 2 };
-assertObjectsEqual(eqObjects(i, j), true);// => true
-
-const k = { a: { y: 0, z: { a: 10 } }, b: 2 };
-const l = { a: { y: 0, z: { a: 2 } }, b: 2 };
-assertObjectsEqual(eqObjects(k, l), false);// => false
-
-const m = { a: { y: 0, z: { a: 2 } }, b: 2, c: { d: { e: 1 } } };
-const n = { a: { y: 0, z: { a: 2 } }, b: 2, c: { d: { e: 1 } } };
-assertObjectsEqual(eqObjects(m, n), true);// => true
-
-const o = { a: { y: 0, z: { a: 2 } }, b: 2, c: { d: { e: 1 }, f: { g: 5, e: 0 } } };
-const p = { a: { y: 0, z: { a: 2 } }, b: 2, c: { d: { e: 1 }, f: { g: 6 } } };
-assertObjectsEqual(eqObjects(o, p), false);// => false
-
-const q = { a: { y: 0, z: { a: 2 } }, b: 2, c: { d: { e: 1 }, f: { g: 5, e: { i: { x: 9 } } } } };
-const r = { a: { y: 0, z: { a: 2 } }, b: 2, c: { d: { e: 1 }, f: { g: 5, e: { i: { x: 9 } } } } };
-assertObjectsEqual(eqObjects(q, r), true);// => true
+module.exports = eqObjects;
