@@ -1,4 +1,4 @@
-const assertEqual = function(actual, expected) {
+const assertEqual = function (actual, expected) {
   if (actual === expected) {
     console.log(`Assertion Passed \u2705: ${actual} === ${expected}`);
   } else {
@@ -6,13 +6,24 @@ const assertEqual = function(actual, expected) {
   }
 };
 
-const eqArrays = (a, b) =>
-  a.length === b.length &&
-  a.every((v, i) => v === b[i]);
+const eqArrays = (array1, array2) => {
 
-//Test Code
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => true
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false); // => false
+  if (array1.length !== array2.length) {
+    return false;
+  }
 
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true);// => true
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false);// => false
+  for (let index in array1) {
+    if (Array.isArray(array1[index])) {
+      if (!(eqArrays(array1[index], array2[index]))) {
+        return false;
+      }
+    } else if (array1[index] !== array2[index]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+assertEqual(eqArrays([[2, 3], [4]], [[2, 3], [4]]), true); // => true
+assertEqual(eqArrays([[2, 3], [4]], [[2, 3], [4, 5]]), false); // => false
+assertEqual(eqArrays([[2, 3], [4]], [[2, 3], 4]), false); // => false
