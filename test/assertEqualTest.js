@@ -1,5 +1,5 @@
-const assertEqual = require('../assertEqual');
+const index = require('../index');
 
 //Test Code
-assertEqual(7, 7);
-assertEqual("Hi", "Hi");
+index.assertEqual(7, 7);
+index.assertEqual("Hi", "Hi");
