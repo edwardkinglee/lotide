@@ -19,7 +19,11 @@ const eqObjects = function(object1, object2) {
       if (!object2keys.includes(element)) {
         return false;
       }
-     
+      //added to check if both nested objects have the same length to fix bug
+      if (Object.keys(object1[element]).length !== Object.keys(object2[element]).length) {
+        return false;
+      }
+
       if (Array.isArray(object1[element])) {
         if (!eqArrays(object1[element], object2[element])) {
           return false;
