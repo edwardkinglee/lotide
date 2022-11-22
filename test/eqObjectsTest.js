@@ -37,4 +37,24 @@ describe("#eqObjects", () => {
     assert.deepEqual(index.eqObjects(i, j), true);
   });
 
+  it("returns true for { a: { y: 0, z: { a: 1, b: {c: 2}} }, b: 2 } === { a: { y: 0, z: { a: 1, b: {c: 2}} }, b: 2 }", () => {
+    const k = { a: { y: 0, z: { a: 1, b: {c: 2}} }, b: 2 };
+    const l = { a: { y: 0, z: { a: 1, b: {c: 2}} }, b: 2 };
+
+    assert.deepEqual(index.eqObjects(k, l), true);
+  });
+
+  it("returns true for { a: { y: 0, z: { a: 1, b: {c: {e: 3}}} }, b: 2 } === { a: { y: 0, z: { a: 1, b: {c: {e: 3}}} }, b: 2 }", () => {
+    const m = { a: { y: 0, z: { a: 1, b: {c: {e: 3}}} }, b: 2 };
+    const n = { a: { y: 0, z: { a: 1, b: {c: {e: 3}}} }, b: 2 };
+
+    assert.deepEqual(index.eqObjects(m, n), true);
+  });
+
+  it("returns false for { a: { y: 0, z: { a: 1, b: {c: {e: 1}}} }, b: 2 } === { a: { y: 0, z: { a: 1, b: {c: {e: 3}}} }, b: 2 }", () => {
+    const o = { a: { y: 0, z: { a: 1, b: {c: {e: 1}}} }, b: 2 };
+    const p = { a: { y: 0, z: { a: 1, b: {c: {e: 3}}} }, b: 2 };
+
+    assert.deepEqual(index.eqObjects(o, p), false);
+  });
 });

@@ -1,12 +1,16 @@
 const eqArrays = require('./eqArrays');
 
-const isObject = (object) => {
-  return object !== null && typeof object === "object";
-};
+// const isObject = (object) => {
+//   return object !== null && typeof object === "object";
+// };
 
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a false
 const eqObjects = function(object1, object2) {
+  const isObject = (object) => {
+    return object !== null && typeof object === "object";
+  };
+  
   const objOneLength = Object.keys(object1).length;
   const objTwoLength = Object.keys(object2).length;
 
@@ -32,7 +36,7 @@ const eqObjects = function(object1, object2) {
       } else if (object1[element] !== object2[element] && !isObject(object1[element]) && !isObject(object2[element])) {
         return false;
       } else if (isObject(object1[element]) || isObject(object2[element])) {
-        eqObjects(object1[element], object2[element]);
+        return eqObjects(object1[element], object2[element]);
       }
 
     }
