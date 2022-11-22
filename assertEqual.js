@@ -9,3 +9,7 @@ const assertEqual = function(actual, expected) {
 };
 
 module.exports = assertEqual;
+
+//Test Code
+assertEqual(7, 7);
+assertEqual("Hi", "Hi");

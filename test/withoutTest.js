@@ -1,10 +1,12 @@
+const assert = require('chai').assert;
 const index = require('../index');
 
-//Test Code
-index.assertArraysEqual(index.without([1, 2, 3], [1]),[2,3]);
-index.assertArraysEqual(index.without(["1", "2", "3"], [1, 2, "3"]), ["1", "2"]);
+describe("#without", () => {
+  it("returns [2,3] for ([1, 2, 3], [1])", () => {
+    assert.deepEqual(index.without([1, 2, 3], [1]), [2,3]);
+  });
 
-const words = ["hello", "world", "lighthouse"];
-index.without(words, ["lighthouse"]); // no need to capture return value for this test case
-// Make sure the original array was not altered by the without function
-index.assertArraysEqual(words, ["hello", "world", "lighthouse"]);
+  it("returns ['1', '2'] for (['1', '2', '3'], [1, 2, '3'])", () => {
+    assert.deepEqual(index.without(["1", "2", "3"], [1, 2, "3"]), ["1", "2"]);
+  });
+});
